@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block title %}Sale #{{ sale.sale_id }}{% endblock %}{% block content %}
+<h1>Sale #{{ sale.sale_id }}</h1><p class="text-muted">{{ sale.customer_name }} · {{ sale.sale_date }}</p>
+<div class="card shadow-sm"><table class="table mb-0"><thead><tr><th>Product</th><th>Quantity</th><th>Unit price</th><th>Line total</th></tr></thead><tbody>{% for item in items %}<tr><td>{{ item.product_name }}</td><td>{{ item.quantity }}</td><td>${{ '%.2f'|format(item.unit_price) }}</td><td>${{ '%.2f'|format(item.quantity * item.unit_price) }}</td></tr>{% endfor %}</tbody><tfoot><tr><th colspan="3">Total</th><th>${{ '%.2f'|format(sale.total_amount) }}</th></tr></tfoot></table></div><a class="btn btn-outline-secondary mt-3" href="{{ url_for('sales') }}">Back to sales</a>
+{% endblock %}

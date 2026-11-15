@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block title %}Dashboard{% endblock %}{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4"><div><h1>Dashboard</h1><p class="text-muted mb-0">Inventory and sales at a glance.</p></div><a class="btn btn-primary" href="{{ url_for('new_product') }}">+ Add product</a></div>
+<div class="row g-3 mb-4">
+{% for label,value in [('Products',stats.products),('Customers',stats.customers),('Suppliers',stats.suppliers),('Sales',stats.sales)] %}
+<div class="col-6 col-lg-3"><div class="card shadow-sm stat"><div class="card-body"><div class="text-muted">{{ label }}</div><div class="display-6 fw-semibold">{{ value }}</div></div></div></div>
+{% endfor %}</div>
+<div class="row g-4"><div class="col-lg-6"><div class="card shadow-sm"><div class="card-header fw-semibold">Low-stock products</div><div class="card-body p-0"><table class="table table-hover mb-0"><thead><tr><th>Product</th><th>Quantity</th><th>Reorder level</th></tr></thead><tbody>{% for item in low_stock %}<tr><td>{{ item.product_name }}</td><td><span class="badge text-bg-danger">{{ item.quantity }}</span></td><td>{{ item.reorder_level }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No low-stock items.</td></tr>{% endfor %}</tbody></table></div></div></div>
+<div class="col-lg-6"><div class="card shadow-sm"><div class="card-header fw-semibold">Recent sales</div><div class="card-body p-0"><table class="table table-hover mb-0"><thead><tr><th>Sale</th><th>Customer</th><th>Total</th></tr></thead><tbody>{% for sale in recent_sales %}<tr><td><a href="{{ url_for('sale_detail',sale_id=sale.sale_id) }}">#{{ sale.sale_id }}</a></td><td>{{ sale.customer_name }}</td><td>${{ '%.2f'|format(sale.total_amount) }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No sales yet.</td></tr>{% endfor %}</tbody></table></div></div></div></div>
+{% endblock %}

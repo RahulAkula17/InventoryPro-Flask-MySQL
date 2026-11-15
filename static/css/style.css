@@ -1,0 +1,6 @@
+body { background: #f5f7fb; color: #253247; }
+.card { border: 1px solid #e6ebf2; border-radius: 12px; }
+.stat { border-left: 4px solid #3268db; }
+.table > :not(caption) > * > * { padding: .85rem 1rem; }
+.table thead th { background-color: #f9fafc; color: #5b6575; font-size: .85rem; }
+h1 { font-size: 1.8rem; font-weight: 700; }

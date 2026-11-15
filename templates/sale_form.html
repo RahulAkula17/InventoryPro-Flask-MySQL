@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}New Sale{% endblock %}{% block content %}
+<h1>Create sale</h1><p class="text-muted">This minimal version sells one product per transaction. Inventory is reduced automatically.</p>
+<form method="post" class="card shadow-sm p-4" style="max-width:700px"><div class="mb-3"><label class="form-label">Customer</label><select class="form-select" name="customer_id" required><option value="">Select customer</option>{% for c in customers %}<option value="{{ c.customer_id }}">{{ c.customer_name }}</option>{% endfor %}</select></div>
+<div class="mb-3"><label class="form-label">Product</label><select class="form-select" name="product_id" required><option value="">Select product</option>{% for p in products %}<option value="{{ p.product_id }}" {% if p.quantity == 0 %}disabled{% endif %}>{{ p.product_name }} · ${{ '%.2f'|format(p.price) }} · {{ p.quantity }} in stock</option>{% endfor %}</select></div>
+<div class="mb-3"><label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity" min="1" value="1" required></div><div><button class="btn btn-primary">Complete sale</button><a href="{{ url_for('sales') }}" class="btn btn-outline-secondary ms-2">Cancel</a></div></form>
+{% endblock %}
