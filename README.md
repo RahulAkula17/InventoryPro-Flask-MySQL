@@ -25,8 +25,8 @@ A minimal relational-database project built with **Python, Flask, MySQL, HTML, B
 
 1. Clone the repository or extract the project archive, and enter its folder:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/InventoryPro.git
-   cd InventoryPro
+    git clone https://github.com/RahulAkula17/InventoryPro-Flask-MySQL.git
+    cd InventoryPro-Flask-MySQL
    ```
    Replace the URL with your real GitHub repository URL after uploading.
 2. Create and activate a virtual environment:
